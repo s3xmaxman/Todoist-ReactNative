@@ -1,6 +1,8 @@
 import { Stack } from "expo-router";
 import { LogBox } from "react-native";
-import { ClerkProvider } from "@clerk/clerk-expo";
+import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
+import { tokenCache } from "@/utils/cache";
+import { Colors } from "@/constants/Colors";
 
 const CLERK_PUBLISHABLE_KEY = process.env
   .EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY as string;
@@ -14,13 +16,26 @@ if (!CLERK_PUBLISHABLE_KEY) {
 LogBox.ignoreLogs(["Clerk: Clerk has been loaded with development keys"]);
 
 const InitialLayout = () => {
-  return <Stack />;
+  return (
+    <Stack
+      screenOptions={{
+        contentStyle: { backgroundColor: Colors.background },
+      }}
+    >
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+    </Stack>
+  );
 };
 
 const RootLayout = () => {
   return (
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
-      <InitialLayout />
+    <ClerkProvider
+      publishableKey={CLERK_PUBLISHABLE_KEY}
+      tokenCache={tokenCache}
+    >
+      <ClerkLoaded>
+        <InitialLayout />
+      </ClerkLoaded>
     </ClerkProvider>
   );
 };
