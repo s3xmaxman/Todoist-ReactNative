@@ -53,7 +53,7 @@ const HeaderLeft = () => {
   return (
     <Image
       source={{ uri: user?.imageUrl }}
-      style={{ width: 32, height: 32, borderRadius: 16 }}
+      style={{ width: 32, height: 32, borderRadius: 16, marginRight: 10 }}
     />
   );
 };
