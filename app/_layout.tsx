@@ -1,5 +1,7 @@
 import { Stack, usePathname, useRouter, useSegments } from "expo-router";
 import { ActivityIndicator, LogBox, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Toaster } from "sonner-native";
 import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import { tokenCache } from "@/utils/cache";
 import { Colors } from "@/constants/Colors";
@@ -61,7 +63,10 @@ const RootLayout = () => {
       tokenCache={tokenCache}
     >
       <ClerkLoaded>
-        <InitialLayout />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Toaster />
+          <InitialLayout />
+        </GestureHandlerRootView>
       </ClerkLoaded>
     </ClerkProvider>
   );
