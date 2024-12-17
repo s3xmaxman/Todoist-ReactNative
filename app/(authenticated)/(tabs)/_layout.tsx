@@ -1,8 +1,6 @@
 import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { Platform, Image } from "react-native";
-import { ImageSourcePropType } from "react-native";
 
 const Layout = () => {
   return (
@@ -19,6 +17,7 @@ const Layout = () => {
         name="today"
         options={{
           title: "Today",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="calendar" color={color} size={size} />
           ),
@@ -28,6 +27,7 @@ const Layout = () => {
         name="upcoming"
         options={{
           title: "Upcoming",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="calendar-outline" color={color} size={size} />
           ),
@@ -37,6 +37,7 @@ const Layout = () => {
         name="search"
         options={{
           title: "Search",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" color={color} size={size} />
           ),
@@ -46,6 +47,7 @@ const Layout = () => {
         name="browse"
         options={{
           title: "Browse",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="list" color={color} size={size} />
           ),
