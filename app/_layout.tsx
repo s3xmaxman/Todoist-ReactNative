@@ -75,8 +75,8 @@ const RootLayout = () => {
             useSuspense
           >
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <Toaster />
               <InitialLayout />
+              <Toaster />
             </GestureHandlerRootView>
           </SQLiteProvider>
         </Suspense>
