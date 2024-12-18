@@ -8,6 +8,10 @@ import { Colors } from "@/constants/Colors";
 import { Suspense, useEffect } from "react";
 import { ROUTE_TODAY } from "@/constants/route";
 import { SQLiteProvider, openDatabaseSync } from "expo-sqlite";
+import migrations from "@/drizzle/migrations";
+import { drizzle } from "drizzle-orm/expo-sqlite";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import { addDummyData } from "@/utils/addDummyData";
 
 const CLERK_PUBLISHABLE_KEY = process.env
   .EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY as string;
@@ -62,6 +66,16 @@ const InitialLayout = () => {
 };
 
 const RootLayout = () => {
+  const expoDB = openDatabaseSync("todos.db");
+  const db = drizzle(expoDB);
+
+  const { success, error } = useMigrations(db, migrations);
+
+  useEffect(() => {
+    if (!success) return;
+    addDummyData(db);
+  }, [success]);
+
   return (
     <ClerkProvider
       publishableKey={CLERK_PUBLISHABLE_KEY!}
