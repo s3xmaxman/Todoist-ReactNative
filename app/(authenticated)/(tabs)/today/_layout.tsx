@@ -13,9 +13,9 @@ const Layout = () => {
       <Stack.Screen
         name="index"
         options={{
-          title: "Today",
+          title: "今日",
           headerLargeTitle: true,
-          headerRight: () => <MoreButton />,
+          headerRight: () => <MoreButton pageName="Today" />,
         }}
       />
     </Stack>
