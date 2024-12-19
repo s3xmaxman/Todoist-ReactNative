@@ -47,6 +47,7 @@
     "react-native": "0.76.5",
     "react-native-bottom-tabs": "^0.3.2",
     "react-native-bouncy-checkbox": "^4.1.2",
+    "react-native-calendars": "^1.1307.0",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-mmkv": "^3.2.0",
     "react-native-purchases": "^8.4.1",
