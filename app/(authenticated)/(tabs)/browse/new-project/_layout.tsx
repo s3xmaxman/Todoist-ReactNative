@@ -1,7 +1,8 @@
 import { Stack, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import { Button } from "react-native";
+import { Platform, TouchableOpacity, Text } from "react-native";
 
+// ... existing imports ...
 const Layout = () => {
   const router = useRouter();
   return (
@@ -11,30 +12,31 @@ const Layout = () => {
         contentStyle: { backgroundColor: Colors.backgroundAlt },
         headerTintColor: Colors.primary,
         headerTitleStyle: { color: "#000" },
+        headerTransparent: Platform.OS === "ios",
+        headerTitle: "",
       }}
     >
       <Stack.Screen
         name="index"
         options={{
-          title: "New Project",
-          headerTransparent: true,
           headerLeft: () => (
-            <Button
-              title="Cancel"
+            <TouchableOpacity
               onPress={() => router.dismiss()}
-              color={Colors.primary}
-            />
+              style={{ paddingHorizontal: 16 }}
+            >
+              <Text style={{ color: Colors.primary }}>Cancel</Text>
+            </TouchableOpacity>
           ),
         }}
       />
       <Stack.Screen
         name="color-select"
         options={{
-          title: "Color",
-          headerTransparent: true,
+          headerTitle: "",
         }}
       />
     </Stack>
   );
 };
+
 export default Layout;
