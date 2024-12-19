@@ -5,6 +5,7 @@ import { Colors } from "@/constants/Colors";
 const Layout = () => {
   const { height } = useWindowDimensions();
   const router = useRouter();
+
   return (
     <Stack screenOptions={{ contentStyle: { backgroundColor: "#fff" } }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
