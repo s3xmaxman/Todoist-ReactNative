@@ -2,7 +2,6 @@ import { Stack, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { Platform, TouchableOpacity, Text } from "react-native";
 
-// ... existing imports ...
 const Layout = () => {
   const router = useRouter();
   return (
@@ -22,7 +21,7 @@ const Layout = () => {
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => router.dismiss()}
-              style={{ paddingHorizontal: 16 }}
+              style={{ paddingHorizontal: "auto" }}
             >
               <Text style={{ color: Colors.primary }}>Cancel</Text>
             </TouchableOpacity>
