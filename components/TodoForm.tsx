@@ -90,30 +90,34 @@ const TodoForm = ({ todo }: TodoFormProps) => {
   }, [trigger]);
 
   const onSubmit = async (data: TodoFormData) => {
-    if (todo) {
-      await drizzleDb
-        .update(todos)
-        .set({
+    try {
+      if (todo) {
+        await drizzleDb
+          .update(todos)
+          .set({
+            name: data.name,
+            description: data.description,
+            project_id: selectedProject.id,
+            due_date: selectedDate.getTime(),
+          })
+          .where(eq(todos.id, todo.id));
+        toast.success("Task Updated");
+      } else {
+        await drizzleDb.insert(todos).values({
           name: data.name,
           description: data.description,
+          priority: 0,
+          date_added: Date.now(),
+          completed: 0,
           project_id: selectedProject.id,
           due_date: selectedDate.getTime(),
-        })
-        .where(eq(todos.id, todo.id));
-      toast.success("Task Updated");
-    } else {
-      await drizzleDb.insert(todos).values({
-        name: data.name,
-        description: data.description,
-        priority: 0,
-        date_added: Date.now(),
-        completed: 0,
-        project_id: selectedProject.id,
-        due_date: selectedDate.getTime(),
-      });
-      toast.success("New Task Added");
+        });
+        toast.success("New Task Added");
+      }
+      router.dismiss();
+    } catch (error) {
+      console.error("タスクの保存中にエラーが発生しました:", error);
     }
-    router.dismiss();
   };
 
   const onProjectPress = (project: Project) => {

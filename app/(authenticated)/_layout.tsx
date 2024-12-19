@@ -1,11 +1,10 @@
 import { Stack, useRouter } from "expo-router";
-import { useWindowDimensions, Button, View } from "react-native";
+import { useWindowDimensions, Button, View, Platform } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 const Layout = () => {
   const { height } = useWindowDimensions();
   const router = useRouter();
-
   return (
     <Stack screenOptions={{ contentStyle: { backgroundColor: "#fff" } }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -13,35 +12,21 @@ const Layout = () => {
         name="task/[id]"
         options={{
           title: "",
-          presentation: "formSheet",
-          sheetAllowedDetents: height > 700 ? [0.22] : "fitToContents",
-          sheetGrabberVisible: false,
-          sheetCornerRadius: 10,
-          headerShown: false,
-          sheetExpandsWhenScrolledToEdge: false,
+          presentation: "modal",
         }}
       />
       <Stack.Screen
         name="task/new"
         options={{
           title: "",
-          presentation: "formSheet",
-          sheetAllowedDetents: height > 700 ? [0.22] : "fitToContents",
-          sheetGrabberVisible: false,
-          sheetCornerRadius: 10,
-          headerShown: false,
-          sheetExpandsWhenScrolledToEdge: false,
+          presentation: "modal",
         }}
       />
       <Stack.Screen
         name="task/date-select"
         options={{
           title: "Schedule",
-          presentation: "formSheet",
-          sheetAllowedDetents: height > 700 ? [0.6, 0.9] : "fitToContents",
-          sheetGrabberVisible: true,
-          sheetCornerRadius: 10,
-          sheetExpandsWhenScrolledToEdge: false,
+          presentation: "modal",
           unstable_sheetFooter: () => (
             <View style={{ height: 400, backgroundColor: "#fff" }} />
           ),
