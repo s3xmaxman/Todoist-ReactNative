@@ -1,4 +1,10 @@
-import { Stack, usePathname, useRouter, useSegments } from "expo-router";
+import {
+  Stack,
+  useNavigationContainerRef,
+  usePathname,
+  useRouter,
+  useSegments,
+} from "expo-router";
 import { ActivityIndicator, LogBox, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Toaster } from "sonner-native";
