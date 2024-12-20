@@ -60,11 +60,11 @@ const HeaderLeft = () => {
 
 const HeaderRight = () => {
   return (
-    // <Link href="/browse/settings" asChild>
-    <TouchableOpacity>
-      <Ionicons name="settings-outline" size={24} color={Colors.primary} />
-    </TouchableOpacity>
-    // </Link>
+    <Link href="/browse/settings" asChild>
+      <TouchableOpacity>
+        <Ionicons name="settings-outline" size={24} color={Colors.primary} />
+      </TouchableOpacity>
+    </Link>
   );
 };
 
